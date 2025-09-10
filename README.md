@@ -1,69 +1,71 @@
-# React + TypeScript + Vite
+# 📺 StreamTV - Plataforma IPTV Premium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**StreamTV** é uma plataforma moderna de IPTV que oferece acesso a milhares de canais de TV, filmes e séries ao vivo, com qualidade HD/4K e disponível em qualquer dispositivo.
 
-Currently, two official plugins are available:
+🔗 [Acesse o projeto online](https://tv-dash-connect.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Visão Geral
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+> Acesse milhares de canais, filmes, séries e conteúdo ao vivo.  
+> Entretenimento premium disponível 24/7 em qualquer dispositivo.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🚀 Funcionalidades
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 📡 Mais de 2300 canais IPTV disponíveis
+- 🎬 Filmes e séries sob demanda
+- 📱 Compatível com smartphones, tablets, smart TVs e desktops
+- ⚙️ Ferramentas de busca, favoritos e configurações personalizadas
+- 🌐 Interface intuitiva e responsiva
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧰 Tecnologias Utilizadas
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Next.js** – Framework React para aplicações web modernas
+- **Tailwind CSS** – Estilização rápida e responsiva
+- **Vercel** – Hospedagem e deploy contínuo
+- **API IPTV** – Integração com fontes de canais ao vivo
+
+---
+
+## 📦 Instalação Local
+
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/tv-dash-connect.git
+
+# Acesse a pasta do projeto
+cd tv-dash-connect
+
+# Instale as dependências
+npm install
+
+# Inicie o servidor de desenvolvimento
+npm run dev
+
+🖼️ Capturas de Tela
+Adicione aqui imagens da interface do projeto, como a tela de canais, busca ou configurações.
+
+📄 Licença
+Este projeto
+https://tv-dash-connect.vercel.app/
+
+
+🙌 Contribuições
+Contribuições são bem-vindas! Se você tiver sugestões, melhorias ou correções, abra uma issue ou envie um pull request.
+
+📬 Contato
+Para dúvidas ou parcerias, entre em contato:
+
+Email:  gislainelophes@gmail.com
+
+LinkedIn: https://www.linkedin.com/in/gislaine-programadora/
+
+Desenvolvido com ❤️ por [gislaine-programadora]
+
+
+
