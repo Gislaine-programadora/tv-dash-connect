@@ -34,10 +34,13 @@ export class IPTVService {
           language: languageMatch ? languageMatch[1] : undefined,
         };
       } else if (line.startsWith('http')) {
-        // This is the URL line
+        // Esta é a URL da stream
         if (currentChannel.name) {
-          currentChannel.url = line;
-          channels.push(currentChannel as IPTVChannel);
+          // ✅ Só aceita streams HLS (.m3u8)
+          if (line.endsWith('.m3u8')) {
+            currentChannel.url = line;
+            channels.push(currentChannel as IPTVChannel);
+          }
           currentChannel = {};
         }
       }
@@ -62,7 +65,7 @@ export class IPTVService {
 
   static filterChannels(channels: IPTVChannel[], query: string): IPTVChannel[] {
     if (!query) return channels;
-    
+
     const lowerQuery = query.toLowerCase();
     return channels.filter(channel =>
       channel.name.toLowerCase().includes(lowerQuery) ||

@@ -18,7 +18,7 @@ const ChannelGrid = ({ searchQuery }: ChannelGridProps) => {
   const [selectedChannel, setSelectedChannel] = useState<IPTVChannel | null>(null);
   const [playerOpen, setPlayerOpen] = useState(false);
 
-  const M3U_URL = 'https://iptv-org.github.io/iptv/categories/general.m3u';
+  const M3U_URL = 'https://iptv-org.github.io/iptv/countries/br.m3u';
 
   const loadChannels = async () => {
     try {

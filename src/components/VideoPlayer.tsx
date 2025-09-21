@@ -1,8 +1,5 @@
 import { useEffect, useRef } from "react";
-import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { IPTVChannel } from "@/services/iptvService";
+import Hls from "hls.js";
 
 interface VideoPlayerProps {
   channel: IPTVChannel | null;
@@ -11,61 +8,37 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer = ({ channel, isOpen, onClose }: VideoPlayerProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    if (isOpen && channel && videoRef.current) {
-      videoRef.current.src = channel.url;
-      videoRef.current.load();
-    }
-  }, [isOpen, channel]);
+    if (!channel?.url || !isOpen) return;
 
-  if (!channel) return null;
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(channel.url);
+      hls.attachMedia(videoRef.current!);
+    } else if (videoRef.current?.canPlayType("application/vnd.apple.mpegurl")) {
+      videoRef.current.src = channel.url;
+    }
+  }, [channel, isOpen]);
+
+  if (!isOpen || !channel) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-full bg-black/95 border-border">
-        <DialogHeader className="border-b border-border pb-4">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-white text-xl">
-              {channel.name}
-            </DialogTitle>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="text-white hover:bg-white/10"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-          {channel.group && (
-            <p className="text-gray-400 text-sm">{channel.group}</p>
-          )}
-        </DialogHeader>
-
-        <div className="aspect-video bg-black rounded-lg overflow-hidden">
-          <video
-            ref={videoRef}
-            controls
-            autoPlay
-            className="w-full h-full"
-            onError={(e) => {
-              console.error('Error loading video:', e);
-            }}
-          >
-            <source src={channel.url} type="application/x-mpegURL" />
-            <source src={channel.url} type="video/mp4" />
-            Seu navegador não suporta a reprodução deste vídeo.
-          </video>
-        </div>
-
-        <div className="text-center text-sm text-gray-400">
-          <p>Pressione ESC para fechar o player</p>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+      <div className="w-full max-w-4xl p-4">
+        <video ref={videoRef} controls autoPlay className="w-full rounded-xl" />
+        <button
+          onClick={onClose}
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
   );
 };
 
 export default VideoPlayer;
+
+
